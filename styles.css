@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('path-to-your-car-image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Optional for a parallax-like effect */
+    color: #333; 
+}
+
+header {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center; 
+    padding: 0.25em 0;
+}
+
+.logo img {
+    max-height: 40px; /* Adjust based on your logo size */
+    margin-left: 1em;
+}
+
+h1, h2 {
+    margin: 0.5em 0;
+}
+
+main {
+    padding: 2em;
+    max-width: 800px;
+    margin: auto;
+}
+
+section {
+    margin-bottom: 2em;
+    padding: 1em;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.intro {
+    font-size: 1.1em;
+}
+
+.about, .audience, .join-us {
+    border-left: 5px solid #3498db;
+    padding-left: 15px;
+}
+
+footer {
+    text-align: center;
+    background: #2c3e50;
+    color: white;
+    padding: 0.1em 0;
+    /* position: fixed; */
+    width: 100%;
+    bottom: 0;
+} 
+
+.content-wrapper {
+    background-image: url('Car.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Optional for a parallax-like effect */
+    padding: 2em 0; /* Adjust as needed */
+    min-height: 100vh; /* Ensures the div covers the full viewport height */
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.8); /* Adds a semi-transparent white overlay to improve readability */
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+
+
+/* Interactive elements for demonstration */
+h2:hover {
+    color: #3498db;
+    cursor: pointer;
+} 
+
