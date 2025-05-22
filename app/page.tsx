@@ -26,7 +26,7 @@ export default function Home() {
           Welcome to My Digital Space
         </h1>
         <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-          I'm Deekshith Reddy, an application developer and problem solver with a deep passion for blockchain technology.
+          I&apos;m Deekshith Reddy, an application developer and problem solver with a deep passion for blockchain technology.
           Explore my thoughts on Ethereum, DAML, Canton, and various tech innovations.
         </p>
       </section>
