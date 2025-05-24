@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Gas in Ethereum - Kar-ka</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="../resources/KAR-KA logo.jpg" type="image/jpg">
+    <style>
+        .article-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .article-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        .article-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+
+        .article-image {
+            background: var(--accent-color);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .article-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .article-text {
+            line-height: 1.8;
+        }
+
+        .article-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-text strong {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .article-content {
+                grid-template-columns: 1fr;
+            }
+
+            .article-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <img src="../resources/KAR-KA logo.jpg" alt="Kar-ka Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Developer.html">Developer Insights</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="article-container">
+        <article>
+            <div class="article-header">
+                <h1>Understanding Gas in Ethereum Transactions</h1>
+                <div class="article-meta">
+                    <span>Published: August 09, 2024</span> | 
+                    <span>Category: Blockchain</span>
+                </div>
+            </div>
+
+            <div class="article-content">
+                <div class="article-image">
+                    <img src="../resources/gasfee.png" alt="Gas Fee Visualization">
+                    <p>Visual representation of Ethereum gas fees</p>
+                </div>
+
+                <div class="article-text">
+                    <p>Higher gas limits lead to faster transaction times, but they also come with higher costs.</p>
+                    
+                    <p><strong>Lower gas limit:</strong> When we pay a low fee to the miners, they won't prioritize the transaction, so it will take some time to execute. The higher-fee transactions will be executed first.</p>
+                    
+                    <p>Previously, we had a bidding system where we could set a high price to make the transaction fast. A low fee meant low priority, leading to delays in the transaction.</p>
+                    
+                    <p>Optimizing gas prices can be challenging because we can't predict gas limits and how transactions are prioritized. So, Ethereum came up with a plan where Ethereum sets a base fee for transactions, making all transactions equally prioritized. To address priority and the miners' issue of earning more, it also introduced a tip system. On top of the base fee, users can add a tip to prioritize their transaction when the network is busy.</p>
+                    
+                    <p><strong>Transaction cost = base fee + tip (when required)</strong> (busy network, high tip; not busy, regular time, low tip). This system is known as <strong>EIP-1559</strong>.</p>
+                    
+                    <h2>How It Works</h2>
+                    <p>We can define a max fee in a transaction, let's assume 0.04 ETH.</p>
+                    
+                    <p><strong>Transaction inclusion:</strong> If the base fee + tip is less than or equal to the max fee, the transaction executes and gets added to the blocks. Let's assume the base fee is 0.01 ETH and the tip we set is 0.001 ETH.</p>
+                    
+                    <p>For inclusion, which means adding the transaction to the block, the transaction cost is 0.01 ETH. We set the max ETH to 0.04, so the transaction is processed using the max fee set, and the tip we set is also sent to the miner.</p>
+                    
+                    <h2>Understanding Refunds</h2>
+                    <p>We set the max fee to be 0.04 ETH. The gas used is only 0.01, so the rest of the gas, which is 0.04 - 0.01 - 0.001 (tip amount) = 0.029 (refund amount), is refunded.</p>
+                    
+                    <p>Right now, Ethereum is using this EIP-1559 mechanism to perform transactions. (EIP: Ethereum Improvement Proposal: 1559th proposal)</p>
+                    
+                    <h2>Viewing Transaction History</h2>
+                    <p>A common question is: When we try to view a previous transaction, do we need to pay the gas fee?</p>
+                    
+                    <p>It's simple to understand that we pay gas fees to store the transaction on the blockchain, which requires a fee to save (the gas fee). But to view transaction history, we can simply go to Etherscan or other websites to find the transaction. However, to interact with the blockchain, we need gas when we're changing or adding something, which leads to the addition of new blocks in the blockchain.</p>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@kar-ka.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index1.html">Developer Insights</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <p>&copy; 2025 Kar-ka. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
