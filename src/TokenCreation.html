@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERC20 Token Creation Tutorial - Kar-ka</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="../resources/KAR-KA logo.jpg" type="image/jpg">
+    <style>
+        .tutorial-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .tutorial-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .tutorial-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        .step {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--accent-color);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .step h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .code-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .code-box code {
+            display: block;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--secondary-color);
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .note strong {
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            .tutorial-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+
+            .step {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <img src="../resources/KAR-KA logo.jpg" alt="Kar-ka Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Developer.html">Developer Insights</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="tutorial-container">
+        <article>
+            <div class="tutorial-header">
+                <h1>Creating an ERC20 Token Using Hardhat</h1>
+                <div class="tutorial-meta">
+                    <span>Published: August 09, 2024</span> | 
+                    <span>Category: Blockchain Development</span>
+                </div>
+            </div>
+
+            <div class="step">
+                <h2>Prerequisites</h2>
+                <p>Before starting, ensure you have:</p>
+                <ul>
+                    <li>An Alchemy account</li>
+                    <li>Metamask installed in your browser</li>
+                    <li>Some Sepolia test tokens (available from <a href="https://www.alchemy.com/faucets/ethereum-sepolia" target="_blank">Alchemy's Sepolia Faucet</a>)</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h2>Step 1: Create Project Structure</h2>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard('mkdir reddy')">Copy</button>
+                    <code>mkdir reddy</code>
+                </div>
+                <p>Navigate to the folder and initialize your project:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard('npm init')">Copy</button>
+                    <code>npm init</code>
+                </div>
+            </div>
+
+            <div class="step">
+                <h2>Step 2: Install Dependencies</h2>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard('npm install --save-dev hardhat')">Copy</button>
+                    <code>npm install --save-dev hardhat</code>
+                </div>
+                <p>Create a Hardhat project:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard('npx hardhat init')">Copy</button>
+                    <code>npx hardhat init</code>
+                </div>
+            </div>
+
+            <div class="step">
+                <h2>Step 3: Project Setup</h2>
+                <p>Create the necessary directories:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard('mkdir contracts\nmkdir scripts')">Copy</button>
+                    <code>mkdir contracts
+mkdir scripts</code>
+                </div>
+            </div>
+
+            <div class="step">
+                <h2>Step 4: Install OpenZeppelin</h2>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard('npm install @openzeppelin/contracts')">Copy</button>
+                    <code>npm install @openzeppelin/contracts</code>
+                </div>
+            </div>
+
+            <div class="step">
+                <h2>Step 5: Create Token Contract</h2>
+                <p>Create MyToken.sol in the contracts folder:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard('// SPDX-License-Identifier: MIT\n\npragma solidity 0.8.20;\n\nimport "@openzeppelin/contracts/token/ERC20/ERC20.sol";\n\ncontract MyToken is ERC20 {\n    uint constant _initial_supply = 10000 * (10 ** 18);\n    constructor() ERC20("MyToken", "MKT") {\n        _mint(msg.sender, _initial_supply);\n    }\n}')">Copy</button>
+                    <code>// SPDX-License-Identifier: MIT
+
+pragma solidity 0.8.20;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract MyToken is ERC20 {
+    uint constant _initial_supply = 10000 * (10 ** 18);
+    constructor() ERC20("MyToken", "MKT") {
+        _mint(msg.sender, _initial_supply);
+    }
+}</code>
+                </div>
+            </div>
+
+            <div class="step">
+                <h2>Step 6: Environment Setup</h2>
+                <p>Install required packages:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard('npm install dotenv --save\nnpm install ethers@5.7.2\nnpm install --save-dev @nomiclabs/hardhat-ethers')">Copy</button>
+                    <code>npm install dotenv --save
+npm install ethers@5.7.2
+npm install --save-dev @nomiclabs/hardhat-ethers</code>
+                </div>
+                
+                <p>Create .env file:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard('API_URL="https://eth-sepolia.g.alchemy.com/v2/your-api-key"\nPRIVATE_KEY="your-metamask-sepolia-private-key"')">Copy</button>
+                    <code>API_URL="https://eth-sepolia.g.alchemy.com/v2/your-api-key"
+PRIVATE_KEY="your-metamask-sepolia-private-key"</code>
+                </div>
+            </div>
+
+            <div class="step">
+                <h2>Step 7: Configure Hardhat</h2>
+                <div class="code-box">
+                    <button class="copy-btn" onclick='copyToClipboard("require(\'dotenv\').config();\nrequire(\'@nomiclabs/hardhat-ethers\');\n\nconst { API_URL, PRIVATE_KEY } = process.env;\n\nmodule.exports = {\n  solidity: \'0.8.20\',\n  defaultNetwork: \'sepolia\',\n  networks: {\n    hardhat: {},\n    sepolia: {\n      url: API_URL,\n      accounts: [`0x${PRIVATE_KEY}`]\n    }\n  },\n}")'>Copy</button>
+                    <code>require('dotenv').config();
+require("@nomiclabs/hardhat-ethers");
+
+const { API_URL, PRIVATE_KEY } = process.env;
+
+module.exports = {
+    solidity: "0.8.20",
+    defaultNetwork: "sepolia",
+    networks: {
+        hardhat: {},
+        sepolia: {
+            url: API_URL,
+            accounts: [`0x${PRIVATE_KEY}`]
+        }
+    },
+}</code>
+                </div>
+                <div class="note">
+                    <strong>Important:</strong> Note the difference between single quotes ('') and backticks (``). Using the wrong one can cause errors.
+                </div>
+            </div>
+
+            <div class="step">
+                <h2>Step 8: Deploy Script</h2>
+                <p>Create deploy.js in the scripts folder:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick='copyToClipboard("async function main() {\n    const [deployer] = await ethers.getSigners();\n    console.log(\'Deploying contract with the account:\', deployer.address);\n    const weiAmount = (await deployer.getBalance()).toString();\n    console.log(\'Account Balance:\', ethers.utils.formatEther(weiAmount));\n    const Token = await ethers.getContractFactory(\'MyToken\');\n    const token = await Token.deploy();\n    console.log(\'Token address:\', token.address);\n}\n\nmain()\n    .then(() => process.exit(0))\n    .catch((error) => {\n        console.error(error);\n        process.exit(1);\n    });")'>Copy</button>
+                    <code>async function main() {
+    const [deployer] = await ethers.getSigners();
+    console.log("Deploying contract with the account:", deployer.address);
+    const weiAmount = (await deployer.getBalance()).toString();
+    console.log("Account Balance:", ethers.utils.formatEther(weiAmount));
+    const Token = await ethers.getContractFactory("MyToken");
+    const token = await Token.deploy();
+    console.log("Token address:", token.address);
+}
+
+main()
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error);
+        process.exit(1);
+    });</code>
+                </div>
+            </div>
+
+            <div class="step">
+                <h2>Step 9: Deploy to Sepolia</h2>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard('npx hardhat run scripts/deploy.js --network sepolia')">Copy</button>
+                    <code>npx hardhat run scripts/deploy.js --network sepolia</code>
+                </div>
+                
+                <h3>After Deployment</h3>
+                <ol>
+                    <li>Copy the token address from the deployment output</li>
+                    <li>Open Metamask and switch to Sepolia network</li>
+                    <li>Click "Import Token"</li>
+                    <li>Paste the token address</li>
+                    <li>Your new tokens should now be visible in your wallet</li>
+                </ol>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@kar-ka.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index1.html">Developer Insights</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <p>&copy; 2025 Kar-ka. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>

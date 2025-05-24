@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Insights - Kar-ka</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="blog-styles.css"> -->
+    <style>
+        .dev-blog-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .week-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .week-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .week-header h2 {
+            margin: 0;
+            color: var(--secondary-color);
+        }
+
+        .week-date {
+            color: #666;
+            font-style: italic;
+        }
+
+        .file-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .file-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--accent-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .file-item:hover {
+            background: linear-gradient(145deg, var(--accent-color), #ffffff);
+            transform: translateX(10px);
+        }
+
+        .file-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .file-info {
+            flex-grow: 1;
+        }
+
+        .file-name {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .file-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .file-meta {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .add-file-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .add-file-btn:hover {
+            transform: scale(1.1);
+            background: var(--secondary-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <img src="../resources/KAR-KA logo.jpg" alt="Kar-ka Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Developer.html" class="active">Developer Insights</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dev-blog-container">
+        <section class="week-section">
+            <div class="week-header">
+                <h2>Week 1: Getting Started</h2>
+                <span class="week-date">March, 2024</span>
+            </div>
+            <ul class="file-list">
+                <li class="file-item">
+                    <a href="GasinEthereum.html" class="file-link">
+                        <div class="file-info">
+                            <div class="file-name">Gas Fee in Ethereum</div>
+                            <div class="file-description">Understanding gas fees and their importance in Ethereum transactions</div>
+                            <div class="file-meta">Added: August 09, 2024</div>
+                        </div>
+                    </a>
+                </li>
+                <li class="file-item">
+                    <a href="TokenCreation.html" class="file-link">
+                        <div class="file-info">
+                            <div class="file-name">ERC20 Token Creation</div>
+                            <div class="file-description">Step-by-step guide to creating ERC20 tokens</div>
+                            <div class="file-meta">Added: August 09, 2024</div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Template for new weeks (commented out) -->
+       
+        <!-- <section class="week-section">
+            <div class="week-header">
+                <h2>Week 2: Advanced Topics</h2>
+                <span class="week-date">March 18-24, 2024</span>
+            </div>
+            <ul class="file-list">
+                <li class="file-item">
+                    <a href="#" class="file-link">
+                        <div class="file-info">
+                            <div class="file-name">File Name</div>
+                            <div class="file-description">File description goes here</div>
+                            <div class="file-meta">Added: Date</div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </section> -->
+     
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@kar-ka.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index1.html">Developer Insights</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <p>&copy; 2025 Kar-ka. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
